@@ -1,0 +1,17 @@
+{
+  "name": "ericanakamine-blog",
+  "version": "1.0.0",
+  "description": "Érica's web site with portfolio and blog sytem.",
+  "main": "index.js",
+  "author": "marcelnakamine",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "node_modules/.bin/vuepress dev src",
+    "build": "node_modules/.bin/vuepress build src"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vuepress": "^1.0.0-alpha.42"
+  }
+}
