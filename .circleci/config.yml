@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Deploy docs to master branch
           command: |
-            git add docs
+            git add --force docs
             git commit -m "Update docs from CircleCI"
             git push -u origin master
 workflows:
