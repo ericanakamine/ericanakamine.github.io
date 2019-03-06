@@ -27,7 +27,10 @@ jobs:
           at: docs
       - run:
           name: Update CNAME
-          command: "erica.nakamine.com.br" > docs/CNAME
+          command: |
+            rm docs/CNAME
+            touch docs/CNAME
+            echo "erica.nakamine.com.br" > docs/CNAME
       - run:
           name: Configure git
           command: |
