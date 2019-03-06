@@ -7,17 +7,17 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install yarn
-        command: npm install -g --silent yarn
+          name: Install yarn
+          command: npm install -g --silent yarn
       - run:
-        name: Install dependencies
-        command: yarn install
+          name: Install dependencies
+          command: yarn install
       - run:
-        name: Build docs
-        command: yarn run build
+          name: Build docs
+          command: yarn run build
       - persist_to_workspace:
-        root: docs
-        paths: .
+          root: docs
+          paths: .
   docs-deploy:
     docker:
       - image: node:9.11.1
@@ -26,16 +26,16 @@ jobs:
       - attach_workspace:
           at: docs
       - run:
-        name: Configure git
-        command: |
-          git config user.email "marcel.nakamine@outlook.com"
-          git config user.name "Ci-Build"
+          name: Configure git
+          command: |
+            git config user.email "marcel.nakamine@outlook.com"
+            git config user.name "Ci-Build"
       - run:
-        name: Deploy docs to master branch
-        command: |
-          git add docs
-          git commit -m "Update docs from CircleCI"
-          git push -u origin master
+          name: Deploy docs to master branch
+          command: |
+            git add docs
+            git commit -m "Update docs from CircleCI"
+            git push -u origin master
 workflows:
   version: 2
   deploy_github_pages:
