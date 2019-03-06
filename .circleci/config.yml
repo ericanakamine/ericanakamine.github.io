@@ -26,6 +26,9 @@ jobs:
       - attach_workspace:
           at: docs
       - run:
+          name: Update CNAME
+          command: "erica.nakamine.com.br" > docs/CNAME
+      - run:
           name: Configure git
           command: |
             git config user.email "marcel.nakamine@outlook.com"
