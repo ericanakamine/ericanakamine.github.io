@@ -7,13 +7,23 @@ module.exports = {
   themeConfig: {
     logo: 'https://d3bv2hg4q0qyg2.cloudfront.net/2018/12/08/33b869f90619e81763dbf1fccc896d8d.jpg',
     nav: [{
-        text: 'trabalhos',
+        text: 'serviços',
         link: '/jobs',
+        side: 'left'
+      },
+      {
+        text: 'portifolio',
+        link: '/portifolio',
         side: 'left'
       },
       {
         text: 'blog',
         link: '/blog',
+        side: 'right'
+      },
+      {
+        text: 'contato',
+        link: '/contact',
         side: 'right'
       },
     ]
