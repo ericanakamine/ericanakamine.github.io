@@ -33,6 +33,9 @@ jobs:
           command: |
             git config user.email "marcel.nakamine@outlook.com"
             git config user.name "Ci-Build"
+      - add_ssh_keys:
+          fingerprints:
+            - "5a:d7:49:e4:c7:db:8b:dd:7d:0d:36:c9:59:14:c8:fc"
       - run:
           name: Deploy docs to master branch
           command: |
