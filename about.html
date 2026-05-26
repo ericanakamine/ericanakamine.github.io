@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Emi Nakamine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FCFCF7;
+      --bg-warm:   #EFECE7;
+      --surface:   #EDEAE6;
+      --border:    #D9D5CE;
+      --border-lt: #E8E4DE;
+      --text:      #1A1714;
+      --muted:     #6E6860;
+      --muted-lt:  #A8A29A;
+      --violet:    #3D3468;
+      --violet-lt: #EDEAF4;
+      --violet-md: #6E64A4;
+      --ink:       #18151E;
+      --radius:    10px;
+      --radius-sm: 4px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(247, 245, 242, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-lt);
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--text); font-weight: 600; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+      border: none;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary {
+      background: var(--violet);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+    }
+    .btn-primary:hover { background: #2E2858; }
+
+    /* ─── LAYOUT ─── */
+    .container { max-width: 1080px; margin: 0 auto; }
+    section { padding: 120px 48px; }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 28px;
+    }
+    .label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--violet-md);
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      padding-top: 148px;
+      padding-bottom: 80px;
+      padding-left: 48px;
+      padding-right: 48px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .page-header-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .page-title {
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      color: var(--text);
+    }
+
+    .page-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--violet-md);
+    }
+
+    .page-intro {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ─── BIO SECTION ─── */
+    #bio { background: var(--bg); padding-top: 0; }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .bio-photo-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .bio-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .bio-text:last-child { margin-bottom: 0; }
+
+    .bio-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-lt);
+    }
+
+    .bio-meta-row {
+      display: flex;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    .bio-meta-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-lt);
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    .bio-meta-value {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* ─── SNAPSHOTS ─── */
+    #snapshots {
+      background: var(--bg);
+      padding-top: 0;
+      padding-bottom: 120px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+
+    .life-block {
+      background: #EDEAE6;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+
+    .life-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--violet-md);
+      margin-bottom: 28px;
+      display: block;
+    }
+
+    .life-photos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .life-photo {
+      aspect-ratio: 3/4;
+      border-radius: 8px;
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .life-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.3s ease;
+    }
+
+    .life-photo--film img {
+      filter: grayscale(0.35) contrast(1.1) brightness(0.92) sepia(0.12);
+    }
+    .life-photo--film:hover img { filter: none; }
+
+    .life-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .life-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    .life-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    .life-highlight {
+      color: var(--violet);
+      background: var(--violet-lt);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+
+    .btn-connect {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      color: var(--violet-md);
+      border: 1px solid var(--violet-md);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 11px 24px;
+      border-radius: var(--radius-sm);
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .btn-connect:hover { background: var(--violet-lt); color: var(--violet); }
+
+    /* ─── CTA ─── */
+    #contact {
+      background: var(--ink);
+      padding: 120px 48px;
+    }
+
+    #contact .container { text-align: center; }
+
+    .cta-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 28px;
+    }
+    .cta-label::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .cta-title {
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #F7F5F2;
+      margin-bottom: 20px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(247,245,242,0.4);
+    }
+
+    .cta-sub {
+      font-size: 16px;
+      color: rgba(247,245,242,0.45);
+      margin-bottom: 48px;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn-white {
+      background: transparent;
+      color: rgba(247,245,242,0.85);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.18s;
+    }
+    .btn-white:hover { border-color: rgba(255,255,255,0.45); color: #F7F5F2; }
+
+    .btn-ghost {
+      background: transparent;
+      color: rgba(247,245,242,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.18s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: rgba(247,245,242,0.7); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 56px 48px;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .footer-brand { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+    .footer-copy { font-size: 12px; color: var(--muted-lt); margin-top: 6px; }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.18s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .social-link {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: all 0.18s;
+    }
+    .social-link:hover { color: var(--text); border-color: var(--muted); }
+
+    /* ─── FADE ─── */
+    .fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade.on { opacity: 1; transform: none; }
+
+    .fade-d1 { transition-delay: 0.08s; }
+    .fade-d2 { transition-delay: 0.16s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      footer { padding: 48px 24px; }
+      .page-header { padding: 120px 24px 60px; }
+      .page-header-grid { grid-template-columns: 1fr; gap: 32px; }
+      .bio-grid { grid-template-columns: 1fr; }
+      .bio-photo-frame { aspect-ratio: 4/3; }
+      #snapshots { padding: 0 24px 80px; }
+      .life-photos { grid-template-columns: repeat(2, 1fr); }
+      .life-footer { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-social { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Emi Nakamine</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+    <a href="index.html#contact" class="btn btn-primary">Get in touch</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-grid">
+      <div class="fade">
+        <span class="label">About</span>
+        <h1 class="page-title">Designing systems that<br><em>actually make sense</em></h1>
+      </div>
+      <p class="page-intro fade fade-d1">I'm a Senior Product Designer based in Tokyo, with a background in architecture and urbanism and 5 years of experience designing for complex B2B SaaS platforms.</p>
+    </div>
+  </div>
+
+  <!-- BIO -->
+  <section id="bio">
+    <div class="container">
+      <div class="bio-grid">
+
+        <div class="bio-photo-frame fade">
+          <img src="images/delete_the_two_guys_202605270814.jpeg" alt="Emi Nakamine" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+
+        <div class="fade fade-d1">
+          <p class="bio-text">My architecture training gave me a systems-first perspective — I think in structures, constraints, and flows before I think in screens. That carries directly into how I approach enterprise product design, where the real challenge is rarely visual: it's organizational, informational, and embedded in how people actually work.</p>
+          <p class="bio-text">Over the past 5 years, I've designed core features for platforms processing millions of fiscal transactions, enterprise document intelligence tools, and supplier networks used by millions of businesses. I work end-to-end: from research and discovery through to interaction design, design systems, and implementation guidance — always in close collaboration with product and engineering.</p>
+          <p class="bio-text">I help teams face ambiguous, high-stakes problems — bringing structure to uncertainty and translating messy requirements into design decisions grounded in evidence.</p>
+
+          <div class="bio-meta">
+            <div class="bio-meta-row">
+              <span class="bio-meta-label">Based</span>
+              <span class="bio-meta-value">Tokyo, Japan</span>
+            </div>
+            <div class="bio-meta-row">
+              <span class="bio-meta-label">Languages</span>
+              <span class="bio-meta-value">Portuguese (native) · English (professional) · Japanese JLPT N2</span>
+            </div>
+            <div class="bio-meta-row">
+              <span class="bio-meta-label">Background</span>
+              <span class="bio-meta-value">M.Sc Architecture & Urbanism, University of São Paulo</span>
+            </div>
+            <div class="bio-meta-row">
+              <span class="bio-meta-label">Contact</span>
+              <span class="bio-meta-value"><a href="mailto:emi@nakamine.com.br" style="color: var(--violet-md);">emi@nakamine.com.br</a></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SNAPSHOTS -->
+  <section id="snapshots">
+    <div class="container">
+      <div class="life-block fade">
+        <span class="life-label">A few snapshots</span>
+        <div class="life-photos">
+          <div class="life-photo"><img src="images/DSCF0075.JPG" alt="Tokyo" /></div>
+          <div class="life-photo"><img src="images/DSCF0659.JPG" alt="Cooking" /></div>
+          <div class="life-photo life-photo--film"><img src="images/IMG_4974.JPG" alt="Working out" /></div>
+          <div class="life-photo life-photo--film"><img src="images/IMG_7863.jpg" alt="" /></div>
+        </div>
+        <hr class="life-divider" />
+        <div class="life-footer">
+          <p class="life-text">Outside of work, I'm exploring Japan, cooking, working out, and spending time with my dog.</p>
+          <a href="index.html#contact" class="btn-connect">Let's talk</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact">
+    <div class="container">
+      <span class="cta-label fade">Contact</span>
+      <h2 class="cta-title fade">
+        Let's build something<br><em>worth using</em>
+      </h2>
+      <p class="cta-sub fade fade-d1">Open to full-time product design roles and strategic projects. Based in Tokyo — available globally.</p>
+      <div class="cta-actions fade fade-d2">
+        <a href="mailto:emi@nakamine.com.br" class="btn btn-white">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Send a message
+        </a>
+        <a href="https://linkedin.com/in/ericaeminakamine" class="btn btn-ghost" target="_blank">View LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Emi Nakamine</div>
+        <p class="footer-copy">© 2026 · Senior Product Designer · Tokyo</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://linkedin.com/in/ericaeminakamine" class="social-link" target="_blank">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+        </a>
+        <a href="https://dribbble.com/eminakamine" class="social-link" target="_blank">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }),
+      { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
+    );
+    document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
