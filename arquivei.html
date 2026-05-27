@@ -612,35 +612,62 @@
       <hr class="cs-section-divider">
       <div id="cs-approach" class="cs-section-block fade">
         <h2 class="cs-section-heading">Approach</h2>
-        <p class="cs-body-text">Before proposing solutions, I conducted a competitive analysis of large-scale B2B SaaS products to understand how mature platforms handle navigation complexity.</p>
-        <p class="cs-body-text">The research focused on: multi-module navigation systems, categorization logic, discoverability vs. depth, and scalability over time.</p>
+        <p class="cs-body-text">Before proposing a new structure, we mapped the existing navigation patterns across the platform and analyzed how users interacted with the product in their daily workflows.</p>
 
-        <p class="cs-body-text">We then mapped Qive (former Arquivei)'s current structure against three possible categorization models:</p>
-
-        <div class="cs-solution-cards">
-          <div class="cs-solution-card">
-            <div class="cs-solution-badge neutral">Model A</div>
-            <div class="cs-solution-card-title">By user role</div>
-            <div class="cs-solution-card-desc">Grouping features by user profile — who typically accesses each feature.</div>
-          </div>
-          <div class="cs-solution-card">
-            <div class="cs-solution-badge neutral">Model B</div>
-            <div class="cs-solution-card-title">By document type</div>
-            <div class="cs-solution-card-desc">Organizing around the fiscal document categories the platform handles.</div>
-          </div>
-          <div class="cs-solution-card selected">
-            <div class="cs-solution-badge chosen">Model C — Selected</div>
-            <div class="cs-solution-card-title">By jobs-to-be-done</div>
-            <div class="cs-solution-card-desc">Grouping by user intent and task outcome, regardless of which team built the feature.</div>
+        <div class="cs-content-block">
+          <h3 class="cs-sub-heading">Models explored</h3>
+          <p class="cs-body-text">The exploration considered multiple organizational approaches:</p>
+          <div class="cs-solution-cards">
+            <div class="cs-solution-card">
+              <div class="cs-solution-badge neutral">Model A</div>
+              <div class="cs-solution-card-title">Workflow-based navigation</div>
+              <div class="cs-solution-card-desc">Grouping features according to operational flows — organizing around the sequence of tasks users typically perform.</div>
+            </div>
+            <div class="cs-solution-card">
+              <div class="cs-solution-badge neutral">Model B</div>
+              <div class="cs-solution-card-title">Use-case categorization</div>
+              <div class="cs-solution-card-desc">Organizing around what users are trying to accomplish, independent of feature names or internal product structure.</div>
+            </div>
+            <div class="cs-solution-card">
+              <div class="cs-solution-badge neutral">Model C</div>
+              <div class="cs-solution-card-title">Frequency of use</div>
+              <div class="cs-solution-card-desc">Prioritizing high-frequency actions and workflows — surfacing what users access most, reducing friction on the paths they take daily.</div>
+            </div>
           </div>
         </div>
 
-        <p class="cs-body-text">Each model was evaluated against two criteria: does it reflect how users describe their work, and can it scale as the platform grows?</p>
+        <div class="cs-content-block">
+          <h3 class="cs-sub-heading">What we analyzed</h3>
+          <ul class="cs-list">
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Navigation depth and feature discoverability
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Repeated user actions and most accessed flows
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Label clarity and interaction consistency across modules
+            </li>
+          </ul>
+        </div>
+
+        <p class="cs-body-text">One important finding was that no single categorization model fully reflected how users navigated the platform in practice. The final structure combined multiple principles:</p>
+
+        <div class="cs-callout">
+          <strong>Level-one navigation</strong> was organized around user departments and operational contexts — such as Purchasing, Fiscal, and Finance. Features inside each category were then prioritized according to <strong>usage frequency</strong> and the most common workflow paths observed in the product.
+        </div>
+
+        <p class="cs-body-text">This hybrid model created a structure that felt familiar to users while reducing friction for high-frequency operational tasks.</p>
 
         <div class="cs-insight">
           <span class="cs-insight-label">Key insight</span>
           <ul>
-            <li>Products that aged well organized navigation around user outcomes, not feature names or internal team structures</li>
+            <li>Users navigated through a combination of operational context and repeated workflows</li>
+            <li>Frequency of use strongly influenced perceived usability</li>
+            <li>A hybrid navigation model reflected user behavior more accurately than a single organizational logic</li>
           </ul>
         </div>
       </div>
