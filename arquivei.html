@@ -41,7 +41,7 @@
     a { color: inherit; text-decoration: none; }
 
     /* ─── NAV ─── */
-    nav {
+    nav.site-nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
@@ -147,7 +147,7 @@
       max-width: 1080px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
     .cs-stat {
       padding: 36px 40px;
@@ -384,7 +384,7 @@
 <body>
 
   <!-- NAV -->
-  <nav>
+  <nav class="site-nav">
     <a href="index.html" class="nav-logo">Emi Nakamine</a>
     <ul class="nav-links">
       <li><a href="index.html#work">Work</a></li>
@@ -418,7 +418,7 @@
           </div>
           <div class="cs-meta-item">
             <div class="cs-meta-label">Duration</div>
-            <div class="cs-meta-value">Sep 2021 — Dec 2021</div>
+            <div class="cs-meta-value">Aug 2021 — Dec 2021</div>
           </div>
           <div class="cs-meta-item">
             <div class="cs-meta-label">Scope</div>
@@ -436,8 +436,8 @@
   <div class="cs-stats">
     <div class="cs-stats-inner">
       <div class="cs-stat">
-        <div class="cs-stat-value">75K+</div>
-        <div class="cs-stat-label">Business accounts on the platform</div>
+        <div class="cs-stat-value">100K+</div>
+        <div class="cs-stat-label">SMB and Enterprise companies on the platform</div>
       </div>
       <div class="cs-stat">
         <div class="cs-stat-value">30%</div>
@@ -446,10 +446,6 @@
       <div class="cs-stat">
         <div class="cs-stat-value">70.4%</div>
         <div class="cs-stat-label">CSAT score post-launch</div>
-      </div>
-      <div class="cs-stat">
-        <div class="cs-stat-value">15K+</div>
-        <div class="cs-stat-label">Customers on new navigation</div>
       </div>
     </div>
   </div>
@@ -462,49 +458,49 @@
       <span class="cs-nav-label">Sections</span>
       <ul class="cs-nav-list">
         <li>
-          <button class="cs-nav-btn" onclick="scrollTo('cs-overview')">
+          <button class="cs-nav-btn" onclick="scrollToSection('cs-overview')">
             <span class="cs-nav-bar"></span>
             <span class="cs-nav-text">Overview</span>
           </button>
         </li>
         <li>
-          <button class="cs-nav-btn" onclick="scrollTo('cs-problem')">
+          <button class="cs-nav-btn" onclick="scrollToSection('cs-problem')">
             <span class="cs-nav-bar"></span>
             <span class="cs-nav-text">Problem</span>
           </button>
         </li>
         <li>
-          <button class="cs-nav-btn" onclick="scrollTo('cs-approach')">
+          <button class="cs-nav-btn" onclick="scrollToSection('cs-approach')">
             <span class="cs-nav-bar"></span>
             <span class="cs-nav-text">Approach</span>
           </button>
         </li>
         <li>
-          <button class="cs-nav-btn" onclick="scrollTo('cs-decision')">
+          <button class="cs-nav-btn" onclick="scrollToSection('cs-decision')">
             <span class="cs-nav-bar"></span>
             <span class="cs-nav-text">The Decision</span>
           </button>
         </li>
         <li>
-          <button class="cs-nav-btn" onclick="scrollTo('cs-testing')">
+          <button class="cs-nav-btn" onclick="scrollToSection('cs-testing')">
             <span class="cs-nav-bar"></span>
             <span class="cs-nav-text">Testing</span>
           </button>
         </li>
         <li>
-          <button class="cs-nav-btn" onclick="scrollTo('cs-final')">
+          <button class="cs-nav-btn" onclick="scrollToSection('cs-final')">
             <span class="cs-nav-bar"></span>
             <span class="cs-nav-text">Final Design</span>
           </button>
         </li>
         <li>
-          <button class="cs-nav-btn" onclick="scrollTo('cs-results')">
+          <button class="cs-nav-btn" onclick="scrollToSection('cs-results')">
             <span class="cs-nav-bar"></span>
             <span class="cs-nav-text">Results</span>
           </button>
         </li>
         <li>
-          <button class="cs-nav-btn" onclick="scrollTo('cs-reflection')">
+          <button class="cs-nav-btn" onclick="scrollToSection('cs-reflection')">
             <span class="cs-nav-bar"></span>
             <span class="cs-nav-text">Reflection</span>
           </button>
@@ -522,33 +518,33 @@
       <!-- OVERVIEW -->
       <div id="cs-overview" class="fade">
         <h2 class="cs-section-heading">Overview</h2>
-        <p class="cs-body-text"><a href="https://qive.com.br/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--border);">Qive (former Arquivei)</a> is Brazil's largest fiscal document automation and management SaaS platform — serving over 75,000 business accounts and processing 30% of all B2B fiscal documents in the country across SMB and Enterprise segments.</p>
-        <p class="cs-body-text">As the platform expanded, the navigation evolved without a consistent structure. New modules were added independently by different teams, causing the experience to reflect the company's internal organization rather than the user's workflow.</p>
+        <p class="cs-body-text"><a href="https://qive.com.br/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--border);">Qive (former Arquivei)</a> is Brazil's largest fiscal document automation and management SaaS platform — serving over 100,000 SMB and Enterprise companies and processing 30% of all B2B fiscal documents in the country.</p>
+        <p class="cs-body-text">As the platform expanded, the navigation evolved without a consistent structure. New modules were added independently by different teams, causing the experience to reflect the <strong>company's internal organization rather than the user's workflow</strong>.</p>
 
         <div class="cs-content-block">
           <h3 class="cs-sub-heading">By the time this initiative started</h3>
           <ul class="cs-list">
             <li class="cs-list-item">
               <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              Users struggled to locate features they already knew existed
+              <span>Users struggled to <strong>locate features they already knew existed</strong></span>
             </li>
             <li class="cs-list-item">
               <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              New users had difficulty discovering product value
+              <span>New users had difficulty <strong>discovering product value</strong></span>
             </li>
             <li class="cs-list-item">
               <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              Navigation depth increased as new products were added
+              <span><strong>Navigation depth increased</strong> as new products were added</span>
             </li>
             <li class="cs-list-item">
               <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              Information architecture became increasingly fragile and difficult to scale
+              <span>Information architecture became <strong>increasingly fragile and difficult to scale</strong></span>
             </li>
           </ul>
         </div>
 
-        <p class="cs-body-text">This was a design-led initiative. I identified the problem, framed the business case, and aligned product and engineering stakeholders around the need for structural change.</p>
-        <p class="cs-body-text">Because the redesign would affect every product entry point, we validated the proposal through usability testing before development started. The initiative later became part of the company's 2024 structural roadmap.</p>
+        <p class="cs-body-text">This was a <strong>design-led initiative</strong>. I identified the problem, framed the business case, and aligned product and engineering stakeholders around the need for structural change.</p>
+        <p class="cs-body-text">Because the redesign would affect every product entry point, we <strong>validated the proposal through usability testing before development started</strong>. The initiative later became part of the company's 2024 structural roadmap.</p>
 
         <div class="cs-insight">
           <span class="cs-insight-label">Key insight</span>
@@ -564,8 +560,8 @@
       <hr class="cs-section-divider">
       <div id="cs-problem" class="cs-section-block fade">
         <h2 class="cs-section-heading">Problem</h2>
-        <p class="cs-body-text">The navigation issues were not visual — they were structural.</p>
-        <p class="cs-body-text">Users had to know what a feature was called to find it, instead of navigating based on what they were trying to accomplish.</p>
+        <p class="cs-body-text">The navigation issues were <strong>not visual — they were structural</strong>.</p>
+        <p class="cs-body-text">Users had to know <strong>what a feature was called to find it</strong>, instead of navigating based on what they were trying to accomplish.</p>
 
         <figure class="cs-img-wrap">
           <img src="images/before.png" alt="Original Qive (former Arquivei) navigation — before redesign" class="cs-img" />
@@ -577,20 +573,20 @@
           <ul class="cs-list">
             <li class="cs-list-item">
               <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              Existing users spent unnecessary time locating features
+              <span>Existing users spent unnecessary time <strong>locating features</strong></span>
             </li>
             <li class="cs-list-item">
               <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              New users failed to discover valuable functionality
+              <span>New users <strong>failed to discover valuable functionality</strong></span>
             </li>
           </ul>
         </div>
 
-        <p class="cs-body-text">For the business, every new feature added additional complexity to an already fragile system.</p>
+        <p class="cs-body-text">For the business, every new feature added <strong>additional complexity to an already fragile system</strong>.</p>
 
         <div class="cs-content-block">
           <h3 class="cs-sub-heading">Goal</h3>
-          <p class="cs-body-text">Design a navigation system organized around how users think about their work — while creating a scalable structure capable of supporting future product expansion.</p>
+          <p class="cs-body-text">Design a navigation system <strong>organized around how users think about their work</strong> — while creating a <strong>scalable structure</strong> capable of supporting future product expansion.</p>
           <ul class="cs-list">
             <li class="cs-list-item">
               <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -614,60 +610,35 @@
         <h2 class="cs-section-heading">Approach</h2>
         <p class="cs-body-text">Before proposing a new structure, we mapped the existing navigation patterns across the platform and analyzed how users interacted with the product in their daily workflows.</p>
 
-        <div class="cs-content-block">
-          <h3 class="cs-sub-heading">Models explored</h3>
-          <p class="cs-body-text">The exploration considered multiple organizational approaches:</p>
-          <div class="cs-solution-cards">
-            <div class="cs-solution-card">
-              <div class="cs-solution-badge neutral">Model A</div>
-              <div class="cs-solution-card-title">Workflow-based navigation</div>
-              <div class="cs-solution-card-desc">Grouping features according to operational flows — organizing around the sequence of tasks users typically perform.</div>
-            </div>
-            <div class="cs-solution-card">
-              <div class="cs-solution-badge neutral">Model B</div>
-              <div class="cs-solution-card-title">Use-case categorization</div>
-              <div class="cs-solution-card-desc">Organizing around what users are trying to accomplish, independent of feature names or internal product structure.</div>
-            </div>
-            <div class="cs-solution-card">
-              <div class="cs-solution-badge neutral">Model C</div>
-              <div class="cs-solution-card-title">Frequency of use</div>
-              <div class="cs-solution-card-desc">Prioritizing high-frequency actions and workflows — surfacing what users access most, reducing friction on the paths they take daily.</div>
-            </div>
-          </div>
-        </div>
+        <p class="cs-body-text">The central tension we had to resolve: <strong>documents are the foundation of every user flow</strong>, regardless of persona — but the tools that add intelligence to those documents are <strong>tied to specific operational routines</strong>. That distinction drove the structural question.</p>
 
         <div class="cs-content-block">
           <h3 class="cs-sub-heading">What we analyzed</h3>
           <ul class="cs-list">
             <li class="cs-list-item">
               <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Navigation depth and feature discoverability
+              <span>Navigation depth and <strong>feature discoverability</strong> across personas</span>
             </li>
             <li class="cs-list-item">
               <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Repeated user actions and most accessed flows
+              <span>Which features were <strong>shared across all users</strong> vs. <strong>specific to a department</strong></span>
             </li>
             <li class="cs-list-item">
               <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Label clarity and interaction consistency across modules
+              <span><strong>Most repeated actions</strong> and most accessed flows per user type</span>
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span><strong>Label clarity</strong> and interaction consistency across modules</span>
             </li>
           </ul>
         </div>
 
-        <p class="cs-body-text">One important finding was that no single categorization model fully reflected how users navigated the platform in practice. The final structure combined multiple principles:</p>
-
-        <div class="cs-callout">
-          <strong>Level-one navigation</strong> was organized around user departments and operational contexts — such as Purchasing, Fiscal, and Finance. Features inside each category were then prioritized according to <strong>usage frequency</strong> and the most common workflow paths observed in the product.
-        </div>
-
-        <p class="cs-body-text">This hybrid model created a structure that felt familiar to users while reducing friction for high-frequency operational tasks.</p>
-
         <div class="cs-insight">
           <span class="cs-insight-label">Key insight</span>
           <ul>
-            <li>Users navigated through a combination of operational context and repeated workflows</li>
-            <li>Frequency of use strongly influenced perceived usability</li>
-            <li>A hybrid navigation model reflected user behavior more accurately than a single organizational logic</li>
+            <li>Not all features belong to the same organizational logic — document access is universal, intelligence tools are contextual</li>
+            <li>Frequency of use wasn't a categorization model — it was a prioritization rule applied within any structure to surface the most-used features first</li>
           </ul>
         </div>
       </div>
@@ -677,36 +648,34 @@
       <div id="cs-decision" class="cs-section-block fade">
         <h2 class="cs-section-heading">The Decision</h2>
 
-        <figure class="cs-img-wrap">
-          <img src="images/IA-analysis.png" alt="Information architecture analysis comparing categorization models" class="cs-img" />
-          <figcaption>IA analysis — mapping existing features across the three categorization models to evaluate fit and scalability</figcaption>
-        </figure>
+        <p class="cs-body-text">The mapping revealed that the product had <strong>two distinct types of content</strong> that needed different organizational logic.</p>
 
-        <p class="cs-body-text">The role-based model created overlap and artificial boundaries, since multiple user profiles accessed the same features.</p>
-        <p class="cs-body-text">Document-type categorization worked for specific workflows, but failed in cross-functional scenarios.</p>
-
-        <div class="cs-content-block">
-          <h3 class="cs-sub-heading">The strongest model combined</h3>
-          <ul class="cs-list">
-            <li class="cs-list-item">
-              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Jobs-to-be-done as the primary structure
-            </li>
-            <li class="cs-list-item">
-              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Document type as a secondary organizational layer where relevant
-            </li>
-          </ul>
+        <div class="cs-solution-cards">
+          <div class="cs-solution-card selected">
+            <div class="cs-solution-badge chosen">Universal layer</div>
+            <div class="cs-solution-card-title">Documents — a shared, generic tab</div>
+            <div class="cs-solution-card-desc">Document consultation and simple reports sit in a main tab accessible to all personas. Documents are the starting point of every user flow, regardless of role — so they needed a neutral, shared space.</div>
+          </div>
+          <div class="cs-solution-card selected">
+            <div class="cs-solution-badge chosen">Contextual layer</div>
+            <div class="cs-solution-card-title">Intelligence tools — organized by department</div>
+            <div class="cs-solution-card-desc">Automations, reconciliations, validations, and other tools that add intelligence to documents are organized by operational department — Purchasing, Fiscal, Finance. These features complement the routine of a specific user type, so they belong in that context.</div>
+          </div>
         </div>
 
-        <p class="cs-body-text">This approach aligned more closely with user mental models while creating a scalable framework for future expansion. The new information architecture allowed new features to be categorized according to what users were trying to accomplish — without requiring structural redesigns.</p>
+        <figure class="cs-img-wrap">
+          <img src="images/IA-analysis.png" alt="Information architecture analysis mapping the two-layer navigation structure" class="cs-img" />
+          <figcaption>IA analysis — separating universal document access from department-specific intelligence tools</figcaption>
+        </figure>
+
+        <p class="cs-body-text">Within each layer, features were <strong>ordered by usage frequency</strong> — most-accessed at the top, progressively deeper as use decreases. This wasn't a categorization decision; it was a <strong>consistency rule applied across the entire navigation</strong>.</p>
 
         <div class="cs-insight">
           <span class="cs-insight-label">Key insight</span>
           <ul>
-            <li>Users navigate by goal, not by feature name</li>
-            <li>Jobs-to-be-done created the most scalable categorization logic</li>
-            <li>Secondary organization layers reduced complexity without increasing depth</li>
+            <li>Documents are the base of every user flow — universal access made sense as a shared layer</li>
+            <li>Intelligence tools only have value in the context of a specific operational routine — organizing them by department made that connection explicit</li>
+            <li>The two-layer structure allowed the navigation to scale: new documents go in the universal layer, new tools go where they belong operationally</li>
           </ul>
         </div>
       </div>
@@ -715,9 +684,9 @@
       <hr class="cs-section-divider">
       <div id="cs-testing" class="cs-section-block fade">
         <h2 class="cs-section-heading">Validating Before Building</h2>
-        <p class="cs-body-text">Because the redesign introduced major structural changes, we validated the proposal through usability testing before implementation.</p>
-        <p class="cs-body-text">Working with limited time and budget, participants were recruited using product usage data in partnership with the Customer Success team. The study included both SMB and Enterprise users representing core usage patterns.</p>
-        <p class="cs-body-text">The prototype was built in Figma as a fully navigable experience. Instead of asking users to locate predefined features, tasks were framed around real goals:</p>
+        <p class="cs-body-text">Because the redesign introduced major structural changes, we <strong>validated the proposal through usability testing before implementation</strong>.</p>
+        <p class="cs-body-text">Working with limited time and budget, participants were recruited using <strong>product usage data</strong> in partnership with the Customer Success team. The study included both <strong>SMB and Enterprise users</strong> representing core usage patterns.</p>
+        <p class="cs-body-text">The prototype was built in Figma as a fully navigable experience. Instead of asking users to locate predefined features, <strong>tasks were framed around real goals</strong>:</p>
 
         <div class="cs-callout">
           <strong>"What would you do to find the products you use most frequently?"</strong>
@@ -732,25 +701,29 @@
 
         <div class="cs-content-block">
           <h3 class="cs-sub-heading">What testing revealed</h3>
-          <p class="cs-body-text">The usability study exposed clear structural issues in the proposed hierarchy:</p>
+          <p class="cs-body-text">The results were <strong>uneven — and that unevenness was informative</strong>.</p>
 
-          <div class="cs-stat-highlight">
+          <div class="cs-stat-highlight" style="grid-template-columns: 1fr 1fr 1fr;">
+            <div class="cs-stat-card" style="border-color: var(--violet-md); background: var(--violet-lt);">
+              <div class="cs-stat-card-value" style="color: var(--violet-md);">75%</div>
+              <div class="cs-stat-card-label">completed document-related tasks without difficulty — visuals and labels worked</div>
+            </div>
             <div class="cs-stat-card">
               <div class="cs-stat-card-value">62.5%</div>
-              <div class="cs-stat-card-label">of users failed tasks involving deeper navigation levels</div>
+              <div class="cs-stat-card-label">did not complete tasks involving features with more specific use cases</div>
             </div>
             <div class="cs-stat-card">
               <div class="cs-stat-card-value">75%</div>
-              <div class="cs-stat-card-label">of users could not locate account settings</div>
+              <div class="cs-stat-card-label">could not locate account settings — the most difficult task in the study</div>
             </div>
           </div>
 
-          <p class="cs-body-text">The proposed four-level depth improved top-level clarity but introduced friction for secondary workflows. These findings revealed that the structure was becoming too deep for task-oriented navigation.</p>
+          <p class="cs-body-text"><strong>The document layer held up</strong> — validating that the universal tab structure and labels resonated with users. The failures were concentrated in <strong>features with more specific use cases</strong>, where the 3-level depth created dead ends, and in account settings, which had <strong>no clear place in the proposed hierarchy</strong>.</p>
         </div>
 
         <div class="cs-content-block">
           <h3 class="cs-sub-heading">From analysis to recommendations</h3>
-          <p class="cs-body-text">To analyze results, we used the Atomic Research methodology — moving from observations to facts, facts to insights, and insights to recommendations. This prevented the team from reacting to isolated usability moments and created a defensible rationale for every design decision.</p>
+          <p class="cs-body-text">To analyze results, we used the <strong>Atomic Research methodology</strong> — moving from <strong>observations → facts → insights → recommendations</strong>. This prevented the team from reacting to isolated usability moments and created a <strong>defensible rationale for every design decision</strong>.</p>
 
           <figure class="cs-img-wrap">
             <img src="images/atomic-research.png" alt="Atomic Research methodology diagram" class="cs-img" style="max-width: 480px; margin-left: auto; margin-right: auto;" />
@@ -758,7 +731,7 @@
           </figure>
         </div>
 
-        <p class="cs-body-text">The findings directly informed iterations: labels were rewritten using user language instead of product terminology, two navigation clusters were restructured, and navigation depth was reduced for high-frequency secondary tasks.</p>
+        <p class="cs-body-text">The findings directly informed iterations: labels were rewritten using <strong>user language instead of product terminology</strong>, two navigation clusters were restructured, and <strong>navigation depth was reduced</strong> for high-frequency secondary tasks.</p>
 
         <div class="cs-insight">
           <span class="cs-insight-label">Key insight</span>
@@ -808,7 +781,7 @@
 
         <div class="cs-content-block">
           <h3 class="cs-sub-heading">Design Handoff &amp; Progressive Rollout</h3>
-          <p class="cs-body-text">The rollout was implemented progressively — first released to 1,000 accounts with rollback access to the previous navigation, then adopted as the default structure for all new accounts. The categorization framework also became a reusable internal standard for future product additions, reducing ad-hoc information architecture decisions across teams.</p>
+          <p class="cs-body-text">The rollout was implemented <strong>progressively</strong> — first released to 1,000 accounts with rollback access to the previous navigation, then adopted as the <strong>default structure for all new accounts</strong>. The categorization framework also became a <strong>reusable internal standard</strong> for future product additions, reducing ad-hoc information architecture decisions across teams.</p>
 
           <figure class="cs-img-wrap">
             <img src="images/design handoff.png" alt="Design handoff documentation and progressive rollout plan" class="cs-img" />
@@ -834,23 +807,23 @@
         <div class="cs-outcomes-list">
           <div class="cs-outcome-item">
             <svg class="cs-outcome-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            The usability study produced a structured report of insights and recommendations that directly drove interface changes — revised labels, restructured clusters, and reduced navigation depth on key flows
+            <span>The usability study produced a structured report of insights and recommendations that <strong>directly drove interface changes</strong> — revised labels, restructured clusters, and reduced navigation depth on key flows</span>
           </div>
           <div class="cs-outcome-item">
             <svg class="cs-outcome-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Task flows with 62.5%–75% failure rates were redesigned before development began, preventing those failure modes from reaching production
+            <span>Task flows with <strong>62.5%–75% failure rates</strong> were redesigned before development began, preventing those failure modes from reaching production</span>
           </div>
           <div class="cs-outcome-item">
             <svg class="cs-outcome-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Today, the new navigation supports 15,000+ business customers and 60,000+ platform users
+            <span>Today, the new navigation supports <strong>15,000+ business customers</strong> and <strong>60,000+ platform users</strong></span>
           </div>
           <div class="cs-outcome-item">
             <svg class="cs-outcome-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            A later CSAT study showed 70.4% user satisfaction, validating improvements in navigation clarity and usability
+            <span>A later CSAT study showed <strong>70.4% user satisfaction</strong>, validating improvements in navigation clarity and usability</span>
           </div>
           <div class="cs-outcome-item">
             <svg class="cs-outcome-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            The categorization framework was adopted as a standard for placing new product features in the nav, reducing ad-hoc information architecture decisions going forward
+            <span>The categorization framework was adopted as a <strong>reusable standard</strong> for placing new product features in the nav, reducing ad-hoc information architecture decisions going forward</span>
           </div>
         </div>
       </div>
@@ -859,8 +832,8 @@
       <hr class="cs-section-divider">
       <div id="cs-reflection" class="cs-section-block fade">
         <h2 class="cs-section-heading">Reflection</h2>
-        <p class="cs-body-text">The hardest part of this project was not designing the interface — it was building alignment around structural change. Navigation affects every team, and stakeholders naturally wanted to preserve existing structures.</p>
-        <p class="cs-body-text">Making the case required reframing the problem in terms of scalability, feature discoverability, product expansion, and operational efficiency — rather than discussing it purely as a UX issue.</p>
+        <p class="cs-body-text">The hardest part of this project was not designing the interface — it was <strong>building alignment around structural change</strong>.</p>
+        <p class="cs-body-text">Making the case required reframing the problem in terms of <strong>scalability, feature discoverability, product expansion, and operational efficiency</strong> — rather than discussing it purely as a UX issue.</p>
 
         <div class="cs-content-block">
           <h3 class="cs-sub-heading">Takeaways</h3>
@@ -879,7 +852,7 @@
             </li>
             <li class="cs-list-item">
               <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Performance and page loading are also part of the navigation experience
+              Page loading is part of the navigation experience — and should be defined as a design requirement, not a post-launch concern
             </li>
             <li class="cs-list-item">
               <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -888,7 +861,7 @@
           </ul>
         </div>
 
-        <p class="cs-body-text">If I were to revisit this project, I would push earlier for quantitative baseline metrics — navigation path analysis, time-on-task, support ticket volume, and feature discovery metrics — to strengthen the business case and long-term impact measurement even further.</p>
+        <p class="cs-body-text">One lesson that only became visible after launch: the new navigation relied on a technology update that made the platform more robust, but the additional layers introduced <strong>longer page render times</strong>. More time to render meant a worse experience than before — even if the structure itself was better. It was a reminder that <strong>performance is not an engineering concern separate from UX</strong>. It's part of the experience definition, and it should be in scope from the beginning.</p>
       </div>
 
       <div class="cs-spacer-lg"></div>
@@ -912,7 +885,7 @@
   </footer>
 
   <script>
-    function scrollTo(id) {
+    function scrollToSection(id) {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -941,6 +914,18 @@
       const el = document.getElementById(id);
       if (el) sectionObs.observe(el);
     });
+
+    // Stop sidebar before footer
+    const sidebarEl = document.querySelector('.cs-sidebar');
+    const footerEl = document.querySelector('.cs-footer');
+    if (sidebarEl && footerEl) {
+      const stopObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          sidebarEl.style.position = e.isIntersecting ? 'relative' : 'sticky';
+        });
+      }, { threshold: 0, rootMargin: '80px 0px 0px 0px' });
+      stopObs.observe(footerEl);
+    }
 
     // Hamburger menu
     const hamburger = document.getElementById('navHamburger');
