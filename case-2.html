@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listing Experience Redesign · Emi Nakamine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FCFCF7;
+      --bg-warm:   #F5F4F2;
+      --surface:   #F0EEEB;
+      --border:    #E2DEDB;
+      --border-lt: #ECEAE6;
+      --text:      #1A1714;
+      --muted:     #6E6860;
+      --muted-lt:  #A8A29A;
+      --violet:    #174044;
+      --violet-lt: #E3F4F4;
+      --violet-md: #207C80;
+      --ink:       #111B1C;
+      --radius:    10px;
+      --radius-sm: 4px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(247, 245, 242, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .nav-logo { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+    .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text); border-radius: 2px; transition: transform 0.22s ease, opacity 0.22s ease; }
+    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    .nav-mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 4px 24px 12px; z-index: 99; flex-direction: column; }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-link { padding: 15px 0; font-size: 16px; font-weight: 600; color: var(--text); border-bottom: 1px solid var(--border-lt); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-mobile-link:last-child { border-bottom: none; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.18s; border: none; letter-spacing: 0.01em; }
+    .btn-primary { background: var(--violet); color: #fff; padding: 9px 20px; border-radius: var(--radius-sm); }
+    .btn-primary:hover { background: #0F3033; }
+
+    /* ─── CASE STUDY HERO ─── */
+    .cs-hero {
+      padding-top: 64px;
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 72px 48px 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: end;
+    }
+    .cs-hero-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--violet-md);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cs-hero-kicker::before { content: ''; display: block; width: 24px; height: 1px; background: var(--violet-md); }
+    .cs-hero-title {
+      font-size: clamp(30px, 3.8vw, 52px);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .cs-hero-desc {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
+    .cs-hero-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-lt);
+    }
+    .cs-meta-item {}
+    .cs-meta-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-lt); margin-bottom: 4px; }
+    .cs-meta-value { font-size: 13px; font-weight: 600; color: var(--text); }
+    .cs-hero-visual {
+      align-self: end;
+      overflow: hidden;
+      border-radius: 12px 12px 0 0;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      box-shadow: 0 -8px 40px rgba(23,64,68,0.08);
+    }
+    .cs-hero-visual img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top left;
+      max-height: 380px;
+      aspect-ratio: 1357 / 1017;
+    }
+
+    /* ─── STATS BAR ─── */
+    .cs-stats {
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .cs-stats-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .cs-stat {
+      padding: 36px 40px;
+      border-right: 1px solid var(--border-lt);
+    }
+    .cs-stat:last-child { border-right: none; }
+    .cs-stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+    .cs-stat-label { font-size: 13px; color: var(--muted); font-weight: 400; line-height: 1.4; }
+
+    /* ─── MAIN LAYOUT ─── */
+    .cs-layout {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      padding: 0 0 120px;
+    }
+
+    /* ─── SIDEBAR ─── */
+    .cs-sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 64px;
+      align-self: flex-start;
+      padding: 56px 0 56px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      background: var(--bg);
+    }
+    .cs-nav-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .cs-nav-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .cs-nav-btn { background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 6px 0; width: 100%; text-align: left; }
+    .cs-nav-bar { display: none; }
+    .cs-nav-btn:hover .cs-nav-bar, .cs-nav-btn.active .cs-nav-bar { background: var(--violet-md); }
+    .cs-nav-text { font-size: 13px; font-weight: 600; color: var(--muted); transition: color 0.2s; }
+    .cs-nav-btn:hover .cs-nav-text, .cs-nav-btn.active .cs-nav-text { color: var(--text); }
+    .cs-back-link { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.2s; }
+    .cs-back-link:hover { color: var(--text); }
+
+    /* ─── CONTENT ─── */
+    .cs-content {
+      flex: 1;
+      min-width: 0;
+      padding: 56px 48px 0 56px;
+    }
+
+    /* Typography */
+    .cs-section-heading {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin: 0 0 20px;
+    }
+    .cs-sub-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 10px;
+      letter-spacing: -0.01em;
+    }
+    .cs-body-text {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--text);
+      margin: 0 0 16px;
+    }
+    .cs-body-text:last-child { margin-bottom: 0; }
+    .cs-muted { color: var(--muted); }
+
+    /* Section blocks */
+    .cs-section-block { padding: 56px 0 0; }
+    .cs-section-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+    .cs-content-block { margin-bottom: 32px; }
+    .cs-content-block:last-child { margin-bottom: 0; }
+
+    /* Lists */
+    .cs-list { list-style: none; margin: 12px 0 20px; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+    .cs-list-item { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; font-weight: 400; line-height: 1.65; color: var(--text); }
+    .cs-list-icon { width: 16px; height: 16px; flex-shrink: 0; margin-top: 4px; color: var(--violet-md); }
+    .cs-list-icon-x { color: #b94040; }
+
+    /* Callout */
+    .cs-callout {
+      background: var(--violet-lt);
+      border-left: 3px solid var(--violet-md);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 18px 22px;
+      margin: 20px 0;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--violet);
+    }
+    .cs-callout strong { font-weight: 700; }
+
+    /* Insight callout */
+    .cs-insight {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 24px 0;
+      border: 1px solid var(--border-lt);
+    }
+    .cs-insight-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--violet-md);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .cs-insight ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .cs-insight li { font-size: 14px; color: var(--muted); line-height: 1.6; display: flex; align-items: flex-start; gap: 8px; }
+    .cs-insight li::before { content: '—'; color: var(--violet-md); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* Solution cards */
+    .cs-solution-cards { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+    .cs-solution-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; background: #fff; }
+    .cs-solution-card.rejected { opacity: 0.7; }
+    .cs-solution-card.selected { border-color: var(--violet-md); background: var(--violet-lt); }
+    .cs-solution-badge {
+      display: inline-flex; align-items: center; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px;
+      border-radius: 20px; margin-bottom: 10px;
+    }
+    .cs-solution-badge.neutral { background: var(--surface); color: var(--muted); }
+    .cs-solution-badge.chosen { background: var(--violet-lt); color: var(--violet); }
+    .cs-solution-card-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .cs-solution-card-desc { font-size: 14px; font-weight: 400; line-height: 1.65; color: var(--muted); }
+
+    /* Outcomes */
+    .cs-outcomes-list { border-top: 1px solid var(--border); padding-top: 20px; margin-top: 16px; display: flex; flex-direction: column; gap: 16px; }
+    .cs-outcome-item { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.65; color: var(--text); }
+    .cs-outcome-icon { width: 16px; height: 16px; flex-shrink: 0; color: var(--violet-md); margin-top: 4px; }
+
+    /* Images */
+    .cs-img {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: block;
+      object-fit: cover;
+    }
+    .cs-img-wrap { margin: 24px 0; }
+    .cs-img-wrap figcaption {
+      font-size: 12px;
+      color: var(--muted-lt);
+      margin-top: 10px;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .cs-img-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+
+    /* Placeholders */
+    .cs-placeholder {
+      width: 100%;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted-lt);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .cs-placeholder-lg { height: 320px; margin: 24px 0; }
+    .cs-placeholder-sm { height: 200px; margin: 24px 0; }
+
+    /* Stat highlight */
+    .cs-stat-highlight {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .cs-stat-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      border: 1px solid var(--border-lt);
+    }
+    .cs-stat-card-value { font-size: 28px; font-weight: 800; color: var(--text); letter-spacing: -0.03em; margin-bottom: 4px; }
+    .cs-stat-card-label { font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+    /* Two-col text grid */
+    .cs-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
+    .cs-two-col-card { background: var(--surface); border-radius: var(--radius); padding: 20px 22px; border: 1px solid var(--border-lt); }
+    .cs-two-col-card-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-lt); margin-bottom: 10px; display: block; }
+
+    /* Spacers */
+    .cs-spacer-sm { height: 12px; }
+    .cs-spacer { height: 24px; }
+    .cs-spacer-lg { height: 40px; }
+
+    /* ─── FOOTER ─── */
+    .cs-footer {
+      background: #1A4245;
+      padding: 80px 48px;
+      text-align: center;
+    }
+    .cs-footer-inner { max-width: 1080px; margin: 0 auto; }
+    .cs-footer-kicker {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      margin-bottom: 24px; display: block;
+    }
+    .cs-footer-title {
+      font-size: clamp(28px, 4vw, 48px); font-weight: 800;
+      color: #F7F5F2; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .cs-footer-title em { font-style: italic; font-weight: 300; color: rgba(247,245,242,0.4); }
+    .cs-footer-sub { font-size: 15px; color: rgba(247,245,242,0.55); margin-bottom: 40px; line-height: 1.6; }
+    .cs-footer-actions { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .btn-white { background: transparent; color: rgba(247,245,242,0.85); border: 1px solid rgba(255,255,255,0.2); padding: 11px 22px; border-radius: var(--radius-sm); font-family: inherit; font-size: 13px; font-weight: 500; transition: all 0.18s; cursor: pointer; }
+    .btn-white:hover { border-color: rgba(255,255,255,0.45); color: #F7F5F2; }
+
+    /* ─── FADE ─── */
+    .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade.on { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-cta-btn { display: none; }
+      .nav-hamburger { display: flex; }
+      .cs-hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 48px 24px 0; }
+      .cs-hero-visual { display: none; }
+      .cs-stats-inner { grid-template-columns: 1fr 1fr; }
+      .cs-stat { border-right: none; border-bottom: 1px solid var(--border-lt); }
+      .cs-layout { flex-direction: column; padding: 0 0 80px; }
+      .cs-sidebar { display: none; }
+      .cs-content { padding: 40px 24px 0; }
+      .cs-img-row { grid-template-columns: 1fr; }
+      .cs-stat-highlight { grid-template-columns: 1fr; }
+      .cs-two-col { grid-template-columns: 1fr; }
+      .cs-footer { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Emi Nakamine</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="index.html#contact" class="btn btn-primary nav-cta-btn">Get in touch</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <a href="index.html#work" class="nav-mobile-link">Work</a>
+    <a href="about.html" class="nav-mobile-link">About</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="cs-hero">
+    <div class="cs-hero-inner">
+      <div>
+        <p class="cs-hero-kicker">Case Study · <a href="https://qive.com.br/" target="_blank" rel="noopener">Qive (former Arquivei)</a></p>
+        <h1 class="cs-hero-title">Redesigning the Listing Experience of a SaaS Platform</h1>
+        <p class="cs-hero-desc">Standardized a fragmented listing interface across a high-volume fiscal document platform — building a scalable framework that reduced operational friction for thousands of daily users.</p>
+        <div class="cs-hero-meta-grid">
+          <div class="cs-meta-item">
+            <div class="cs-meta-label">Company</div>
+            <div class="cs-meta-value">Qive (former Arquivei)</div>
+          </div>
+          <div class="cs-meta-item">
+            <div class="cs-meta-label">Role</div>
+            <div class="cs-meta-value">Product Designer</div>
+          </div>
+          <div class="cs-meta-item">
+            <div class="cs-meta-label">Collaborators</div>
+            <div class="cs-meta-value">Product · Engineering · Data</div>
+          </div>
+          <div class="cs-meta-item">
+            <div class="cs-meta-label">Scope</div>
+            <div class="cs-meta-value">Information Design · UX Strategy · Design Systems</div>
+          </div>
+        </div>
+      </div>
+      <div class="cs-hero-visual">
+        <img src="images/2 - hero.png" alt="Listing experience redesign — Qive (former Arquivei)" />
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="cs-stats">
+    <div class="cs-stats-inner">
+      <div class="cs-stat">
+        <div class="cs-stat-value">75K+</div>
+        <div class="cs-stat-label">Business accounts on the platform</div>
+      </div>
+      <div class="cs-stat">
+        <div class="cs-stat-value">Millions</div>
+        <div class="cs-stat-label">Fiscal documents processed daily</div>
+      </div>
+      <div class="cs-stat">
+        <div class="cs-stat-value">7</div>
+        <div class="cs-stat-label">Listing modules standardized</div>
+      </div>
+      <div class="cs-stat">
+        <div class="cs-stat-value">32</div>
+        <div class="cs-stat-label">Microfeatures standardized across lists</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="cs-layout">
+
+    <!-- SIDEBAR -->
+    <nav class="cs-sidebar" aria-label="Case study sections">
+      <span class="cs-nav-label">Sections</span>
+      <ul class="cs-nav-list">
+        <li>
+          <button class="cs-nav-btn" onclick="scrollTo('cs-overview')">
+            <span class="cs-nav-bar"></span>
+            <span class="cs-nav-text">Overview</span>
+          </button>
+        </li>
+        <li>
+          <button class="cs-nav-btn" onclick="scrollTo('cs-problem')">
+            <span class="cs-nav-bar"></span>
+            <span class="cs-nav-text">Problem</span>
+          </button>
+        </li>
+        <li>
+          <button class="cs-nav-btn" onclick="scrollTo('cs-approach')">
+            <span class="cs-nav-bar"></span>
+            <span class="cs-nav-text">Approach</span>
+          </button>
+        </li>
+        <li>
+          <button class="cs-nav-btn" onclick="scrollTo('cs-decision')">
+            <span class="cs-nav-bar"></span>
+            <span class="cs-nav-text">The Decision</span>
+          </button>
+        </li>
+        <li>
+          <button class="cs-nav-btn" onclick="scrollTo('cs-final')">
+            <span class="cs-nav-bar"></span>
+            <span class="cs-nav-text">Final Solution</span>
+          </button>
+        </li>
+        <li>
+          <button class="cs-nav-btn" onclick="scrollTo('cs-results')">
+            <span class="cs-nav-bar"></span>
+            <span class="cs-nav-text">Results</span>
+          </button>
+        </li>
+        <li>
+          <button class="cs-nav-btn" onclick="scrollTo('cs-reflection')">
+            <span class="cs-nav-bar"></span>
+            <span class="cs-nav-text">Reflection</span>
+          </button>
+        </li>
+      </ul>
+      <a href="index.html" class="cs-back-link">
+        <svg width="13" height="11" viewBox="0 0 13 11" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.6 5.414a.675.675 0 01-.675.675H2.35l3.742 3.564a.675.675 0 11-.927.982L.207 5.9A.675.675 0 010 5.414c0-.09.018-.18.054-.263a.675.675 0 01.152-.22L5.157.203A.675.675 0 016.09 1.175L2.35 4.739h9.575a.675.675 0 01.675.675z"/></svg>
+        <span>All work</span>
+      </a>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="cs-content">
+
+      <!-- OVERVIEW -->
+      <div id="cs-overview" class="fade">
+        <h2 class="cs-section-heading">Overview</h2>
+        <p class="cs-body-text"><a href="https://qive.com.br/" target="_blank" rel="noopener">Qive (former Arquivei)</a> is one of Brazil's largest fiscal document automation platforms, serving over 75,000 business accounts and processing millions of fiscal documents daily.</p>
+        <p class="cs-body-text">As the product expanded, listing interfaces became increasingly inconsistent across the platform. Different teams created independent table structures, behaviors and layouts over time — resulting in fragmented experiences that made workflows harder to scan, compare, and operate efficiently.</p>
+        <p class="cs-body-text">The listing experience had become a critical operational surface, especially for users managing large document volumes daily. This initiative focused on creating a scalable listing framework that could standardize interaction patterns while improving usability and operational efficiency.</p>
+
+        <div class="cs-insight">
+          <span class="cs-insight-label">Key insight</span>
+          <ul>
+            <li>Listing tables had evolved independently across teams, each with different behaviors</li>
+            <li>Users had to repeatedly adapt to inconsistent interaction patterns</li>
+            <li>The lack of consistency increased cognitive load during operational workflows</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PROBLEM -->
+      <hr class="cs-section-divider">
+      <div id="cs-problem" class="cs-section-block fade">
+        <h2 class="cs-section-heading">Problem</h2>
+        <p class="cs-body-text">The problem was not only visual inconsistency — it was operational friction.</p>
+        <p class="cs-body-text">Users interacted with large amounts of data every day, but the platform lacked standardized behaviors across the interfaces they relied on most.</p>
+
+        <div class="cs-content-block">
+          <h3 class="cs-sub-heading">What was missing</h3>
+          <ul class="cs-list">
+            <li class="cs-list-item">
+              <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Consistent table layouts and column structures
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Unified filtering and search patterns
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Coherent information hierarchy across modules
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Standardized bulk actions and status visualization
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Predictable responsive behavior across viewport sizes
+            </li>
+          </ul>
+        </div>
+
+        <div class="cs-two-col">
+          <div class="cs-two-col-card">
+            <span class="cs-two-col-card-label">For users</span>
+            <ul class="cs-list" style="margin:0;">
+              <li class="cs-list-item" style="font-size:14px;">
+                <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Important information was difficult to scan at a glance
+              </li>
+              <li class="cs-list-item" style="font-size:14px;">
+                <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Repeated visual re-adaptation slowed operational workflows
+              </li>
+            </ul>
+          </div>
+          <div class="cs-two-col-card">
+            <span class="cs-two-col-card-label">For the business</span>
+            <ul class="cs-list" style="margin:0;">
+              <li class="cs-list-item" style="font-size:14px;">
+                <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Teams recreated similar solutions independently, without shared standards
+              </li>
+              <li class="cs-list-item" style="font-size:14px;">
+                <svg class="cs-list-icon cs-list-icon-x" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                The experience became harder to scale consistently across modules
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cs-content-block">
+          <h3 class="cs-sub-heading">Goal</h3>
+          <p class="cs-body-text">Create a scalable listing framework that improves usability, consistency, and operational efficiency across high-volume workflows.</p>
+          <ul class="cs-list">
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              More consistent table behavior across the platform
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Faster information scanning for operational users
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Improved usability for high-volume, repetitive tasks
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Better adaptability for future product expansion
+            </li>
+          </ul>
+        </div>
+
+        <figure class="cs-img-wrap">
+          <img src="images/2 - antiga.png" alt="Before state — existing listing fragmentation across modules" class="cs-img" />
+          <figcaption>Before — listing tables built independently across teams, each with different layouts and interaction patterns</figcaption>
+        </figure>
+      </div>
+
+      <!-- APPROACH -->
+      <hr class="cs-section-divider">
+      <div id="cs-approach" class="cs-section-block fade">
+        <h2 class="cs-section-heading">Approach</h2>
+        <p class="cs-body-text">Before proposing any new structure, we mapped the listing patterns already existing across the platform and analyzed how users interacted with high-volume operational tables in real workflows.</p>
+
+        <div class="cs-content-block">
+          <h3 class="cs-sub-heading">The analysis focused on</h3>
+          <ul class="cs-list">
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Information density and column usage across modules
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Most repeated user actions and frequently accessed columns
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Filter usage patterns and search behaviors
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Visual hierarchy and interaction consistency across the product
+            </li>
+          </ul>
+        </div>
+
+        <p class="cs-body-text">The redesign also considered the broader operational ecosystem surrounding the listing experience — including exports, document actions, tagging systems, bulk operations, and configuration flows. Because these interactions were deeply interconnected, consistency became a structural requirement rather than a purely visual improvement.</p>
+
+        <div class="cs-callout">
+          <strong>The key questions driving the process:</strong> Which information is actually critical for decision-making? Which actions do users perform most frequently? How can the interface support faster scanning in dense workflows — and how much information should remain visible by default?
+        </div>
+
+        <figure class="cs-img-wrap">
+          <img src="images/2-problem.png" alt="Mapping exercise — listing patterns across modules" class="cs-img" />
+          <figcaption>Mapping existing listing patterns — analyzing information density, filter usage, and interaction consistency across modules</figcaption>
+        </figure>
+
+        <div class="cs-insight">
+          <span class="cs-insight-label">Key insight</span>
+          <ul>
+            <li>The listing experience functioned as a complex operational ecosystem, not a single interface</li>
+            <li>Fragmentation increased as new actions and workflows were added independently by different teams</li>
+            <li>Standardization needed to support both scalability and operational flexibility simultaneously</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- THE DECISION -->
+      <hr class="cs-section-divider">
+      <div id="cs-decision" class="cs-section-block fade">
+        <h2 class="cs-section-heading">Decision Based on Data</h2>
+        <p class="cs-body-text">To support prioritization decisions, we analyzed usage patterns and feature interaction frequency in partnership with the Data team. The data revealed clear concentration around a small number of repeated behaviors — which made the path forward much more concrete than gut instinct alone could have.</p>
+
+        <div class="cs-content-block">
+          <h3 class="cs-sub-heading">What the data revealed</h3>
+          <ul class="cs-list">
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              A limited set of filters represented the vast majority of user interactions
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              A small number of columns had high operational importance across all user types
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Several fields had extremely low usage frequency — occupying visual real estate without earning it
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Visual density in the existing layout was directly affecting scan efficiency
+            </li>
+          </ul>
+        </div>
+
+        <p class="cs-body-text">This allowed us to separate content into three clear tiers: essential operational information, secondary contextual information, and rarely accessed data. The interface structure was then reorganized around those priorities — surfacing what matters most, without hiding what users occasionally need.</p>
+
+
+        <div class="cs-insight">
+          <span class="cs-insight-label">Key insight</span>
+          <ul>
+            <li>High-density interfaces require prioritization, not simplification alone</li>
+            <li>Frequency of use should directly influence visual hierarchy decisions</li>
+            <li>Data-heavy products benefit from progressive disclosure — revealing depth without leading with it</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FINAL DESIGN -->
+      <hr class="cs-section-divider">
+      <div id="cs-final" class="cs-section-block fade">
+        <h2 class="cs-section-heading">Final Solution</h2>
+        <p class="cs-body-text">The redesign established a scalable listing framework focused on consistency and operational usability. Rather than redesigning each module independently, the work produced a shared structural logic that could be applied across the platform.</p>
+
+        <div class="cs-content-block">
+          <h3 class="cs-sub-heading">The new framework introduced</h3>
+          <ul class="cs-list">
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Standardized table structures with a shared column and spacing logic
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Unified filtering and search behaviors across all listing surfaces
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Consistent action positioning — bulk actions, exports, and configuration in predictable locations
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Improved spacing and readability for dense data rows
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              More efficient information hierarchy, surfacing critical data before secondary fields
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Responsive behaviors for different viewport sizes
+            </li>
+          </ul>
+        </div>
+
+        <figure class="cs-img-wrap">
+          <img src="images/2-before-after.png" alt="Before and after comparison of the NFe listing redesign, with annotated navigation, filter, and table layers" class="cs-img" />
+          <figcaption>Before → After — the redesigned NFe listing view, with color-coded layers showing the three standardized structural components: navigation, filter &amp; search, and table</figcaption>
+        </figure>
+
+        <div class="cs-content-block">
+          <h3 class="cs-sub-heading">Improving Use of Screen Space</h3>
+          <p class="cs-body-text">One significant improvement involved restructuring how information occupied the available table area. The before state had critical information competing visually with secondary fields, inconsistent white space distribution, and dense layouts that reduced scanability.</p>
+          <p class="cs-body-text">The updated structure improved column prioritization, data grouping, alignment consistency, and visual rhythm across rows — creating a more balanced relationship between information density and clarity.</p>
+
+          <div class="cs-spacer-sm"></div>
+        </div>
+
+        <div class="cs-insight">
+          <span class="cs-insight-label">Key insight</span>
+          <ul>
+            <li>Consistency reduced the need for repeated interpretation, allowing users to focus on operational tasks rather than re-learning the interface</li>
+            <li>A shared structural logic is more valuable than isolated module improvements</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <hr class="cs-section-divider">
+      <div id="cs-results" class="cs-section-block fade">
+        <h2 class="cs-section-heading">Results</h2>
+        <p class="cs-body-text">The new listing framework became the foundation for future listing implementations across the platform — not just a one-time fix, but a structural standard.</p>
+
+        <div class="cs-outcomes-list">
+          <div class="cs-outcome-item">
+            <svg class="cs-outcome-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            More cohesive table behaviors across modules, reducing the learning curve when switching between product areas
+          </div>
+          <div class="cs-outcome-item">
+            <svg class="cs-outcome-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Reduced interface fragmentation — teams stopped recreating listing solutions independently
+          </div>
+          <div class="cs-outcome-item">
+            <svg class="cs-outcome-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Improved scanability for operational workflows, particularly for users managing large document volumes daily
+          </div>
+          <div class="cs-outcome-item">
+            <svg class="cs-outcome-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Better scalability for future product growth — new listing surfaces could be built from the shared framework rather than from scratch
+          </div>
+          <div class="cs-outcome-item">
+            <svg class="cs-outcome-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Shared structural standards established between design and engineering, reducing ad-hoc implementation decisions going forward
+          </div>
+        </div>
+
+        <div class="cs-insight">
+          <span class="cs-insight-label">Key insight</span>
+          <ul>
+            <li>Design systems are not only visual — they also standardize operational behavior</li>
+            <li>Structural consistency improves learnability at scale, reducing the cost of onboarding new users to complex surfaces</li>
+            <li>Operational products benefit most from reusable interaction frameworks, not one-off redesigns</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- REFLECTION -->
+      <hr class="cs-section-divider">
+      <div id="cs-reflection" class="cs-section-block fade">
+        <h2 class="cs-section-heading">Reflection</h2>
+        <p class="cs-body-text">One of the biggest challenges of this project was balancing standardization with flexibility. Different teams had legitimate operational needs — but excessive customization was creating the very fragmentation we were trying to solve. The tension between "consistent enough to be predictable" and "flexible enough to be useful" drove most of the design decisions.</p>
+        <p class="cs-body-text">The project reinforced how important shared interaction principles are in growing SaaS ecosystems — especially in products where users spend hours navigating large datasets daily. The listing surface isn't glamorous, but for operational users, it's where they live.</p>
+
+        <div class="cs-content-block">
+          <h3 class="cs-sub-heading">Takeaways</h3>
+          <ul class="cs-list">
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Data-heavy interfaces require clear prioritization strategies — not just more whitespace
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Consistency is critical in operational workflows where users move quickly and repetitively
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Visual hierarchy should reflect usage frequency — what users touch most should feel most accessible
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Information density can coexist with clarity — when the structure is intentional
+            </li>
+            <li class="cs-list-item">
+              <svg class="cs-list-icon" viewBox="0 0 15 11" fill="none"><path d="M1 5.3L5.3 9.6 13.6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Screen loading and responsiveness are also part of the overall user experience — performance is UX
+            </li>
+          </ul>
+        </div>
+
+        <p class="cs-body-text">If revisiting this initiative, I would push earlier for quantitative measurements — scan efficiency metrics, interaction heatmaps, time-to-completion benchmarks, and comparative workflow analysis — to strengthen long-term usability validation and give the business case more concrete teeth.</p>
+      </div>
+
+      <div class="cs-spacer-lg"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="cs-footer">
+    <div class="cs-footer-inner">
+      <span class="cs-footer-kicker">What's next?</span>
+      <h2 class="cs-footer-title">Let's build something <em>worth using</em></h2>
+      <p class="cs-footer-sub">Open to full-time product design roles and strategic projects.<br>Based in Tokyo — available globally.</p>
+      <div class="cs-footer-actions">
+        <a href="mailto:emi@nakamine.com.br" class="btn-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px;margin-right:6px"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Send a message
+        </a>
+        <a href="https://linkedin.com/in/ericaeminakamine" class="btn-white" target="_blank" rel="noopener">View LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function scrollTo(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Intersection observer for fade-in
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }),
+      { threshold: 0.06, rootMargin: '0px 0px -32px 0px' }
+    );
+    document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+    // Active sidebar nav on scroll
+    const sections = ['cs-overview','cs-problem','cs-approach','cs-decision','cs-final','cs-results','cs-reflection'];
+    const navBtns = document.querySelectorAll('.cs-nav-btn');
+
+    const sectionObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = sections.indexOf(entry.target.id);
+          navBtns.forEach((btn, i) => btn.classList.toggle('active', i === idx));
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-64px 0px -60% 0px' });
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) sectionObs.observe(el);
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('navMobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+    });
+    mobileMenu.querySelectorAll('.nav-mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+        mobileMenu.setAttribute('aria-hidden', true);
+      });
+    });
+  </script>
+
+</body>
+</html>

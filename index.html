@@ -19,10 +19,10 @@
       --text:      #1A1714;
       --muted:     #6E6860;
       --muted-lt:  #A8A29A;
-      --violet:    #3D3468;
-      --violet-lt: #EDEAF4;
-      --violet-md: #6E64A4;
-      --ink:       #18151E;
+      --violet:    #174044;
+      --violet-lt: #E3F4F4;
+      --violet-md: #207C80;
+      --ink:       #111B1C;
       --radius:    10px;
       --radius-sm: 4px;
     }
@@ -78,6 +78,50 @@
     }
     .nav-links a:hover { color: var(--text); }
 
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 4px 24px 12px;
+      z-index: 99;
+      flex-direction: column;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-link {
+      padding: 15px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      border-bottom: 1px solid var(--border-lt);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-mobile-link:last-child { border-bottom: none; }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -97,7 +141,7 @@
       padding: 9px 20px;
       border-radius: var(--radius-sm);
     }
-    .btn-primary:hover { background: #2E2858; }
+    .btn-primary:hover { background: #0F3033; }
 
     .btn-outline {
       background: transparent;
@@ -654,7 +698,7 @@
 
     /* ─── CTA ─── */
     #contact {
-      background: var(--ink);
+      background: #1A4245;
       padding: 120px 48px;
     }
 
@@ -698,7 +742,7 @@
 
     .cta-sub {
       font-size: 16px;
-      color: rgba(247,245,242,0.45);
+      color: #F7F5F2;
       margin-bottom: 48px;
     }
 
@@ -799,6 +843,8 @@
     @media (max-width: 960px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
+      .nav-cta-btn { display: none; }
+      .nav-hamburger { display: flex; }
       section { padding: 80px 24px; }
       footer { padding: 48px 24px; }
 
@@ -831,8 +877,15 @@
       <li><a href="#work">Work</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
-    <a href="#contact" class="btn btn-primary">Get in touch</a>
+    <a href="#contact" class="btn btn-primary nav-cta-btn">Get in touch</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <a href="#work" class="nav-mobile-link">Work</a>
+    <a href="about.html" class="nav-mobile-link">About</a>
+  </div>
 
   <!-- HERO -->
   <section id="hero">
@@ -892,57 +945,38 @@
       </div>
 
       <!-- Featured card -->
-      <div class="project-featured fade">
-        <div class="project-featured-thumb">Project image</div>
+      <a href="arquivei.html" class="project-featured fade" style="display:grid;text-decoration:none;color:inherit;">
+        <div class="project-featured-thumb" style="display:flex;align-items:center;justify-content:center;padding:40px;background:var(--surface);">
+          <img src="images/[Principal Trial] Primeiros Passos.png" alt="Arquivei navigation redesign" style="max-width:100%;max-height:100%;object-fit:contain;display:block;" />
+        </div>
         <div class="project-featured-info">
           <p class="project-featured-num">01 — Featured</p>
-          <h3 class="project-featured-title">Redesigning Navigation to Scale a Complex SaaS Platform</h3>
-          <p class="project-featured-desc">Led the strategic overhaul of Arquivei's navigation architecture — coordinating a cross-functional team, running usability testing to validate decisions, and contributing to a 70% CSAT score post-launch.</p>
+          <h3 class="project-featured-title">Redefining Navigation for a Scalable SaaS Platform</h3>
+          <p class="project-featured-desc">Led the structural overhaul of Qive (former Arquivei)'s navigation — from design-led initiative through stakeholder alignment, usability validation, and progressive rollout. 70.4% CSAT post-launch.</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
             <span class="tag">Information Architecture</span>
             <span class="tag">UX Strategy</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- List -->
       <div class="projects-list">
 
-        <div class="project-row fade">
+        <a href="case-2.html" class="project-row fade" style="grid-template-columns:56px 1fr 160px auto;text-decoration:none;color:inherit;">
           <span class="project-num">02</span>
-          <div class="project-row-info">
-            <span class="project-row-title">Validating a Design Proposal with Usability Testing</span>
-            <span class="project-row-desc">Designed a new interface proposal and validated it through remote usability testing — translating user insights into evidence-based decisions that shaped the final product.</span>
-          </div>
-          <div class="project-row-tags">
-            <span class="tag tag-neutral">Usability Research</span>
-            <span class="tag tag-neutral">Iterative Design</span>
-          </div>
-        </div>
-
-        <div class="project-row fade">
-          <span class="project-num">03</span>
           <div class="project-row-info">
             <span class="project-row-title">Redesigning a Data-Heavy Listing Experience</span>
             <span class="project-row-desc">Overhauled a complex list view used daily by 150,000+ business customers, balancing information density, operational clarity, and workflow efficiency.</span>
+          </div>
+          <div style="overflow:hidden;border-radius:6px;border:1px solid var(--border);align-self:center;">
+            <img src="images/2 - hero.png" alt="Listing experience redesign — Qive (former Arquivei)" style="width:160px;height:120px;object-fit:cover;object-position:top left;display:block;" />
           </div>
           <div class="project-row-tags">
             <span class="tag tag-neutral">Information Design</span>
             <span class="tag tag-neutral">B2B SaaS</span>
           </div>
-        </div>
-
-        <div class="project-row fade">
-          <span class="project-num">04</span>
-          <div class="project-row-info">
-            <span class="project-row-title">Improving Mobile UX to Drive Lead Conversion</span>
-            <span class="project-row-desc">Identified friction points in the mobile experience through research and redesigned key flows to improve discoverability — supporting 60k+ monthly organic visits.</span>
-          </div>
-          <div class="project-row-tags">
-            <span class="tag tag-neutral">Mobile UX</span>
-            <span class="tag tag-neutral">Research-led Design</span>
-          </div>
-        </div>
+        </a>
 
       </div>
     </div>
@@ -1016,32 +1050,11 @@
           <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
           Send a message
         </a>
-        <a href="https://linkedin.com/in/ericaeminakamine" class="btn btn-ghost" target="_blank">View LinkedIn</a>
+        <a href="https://linkedin.com/in/ericaeminakamine" class="btn btn-white" target="_blank">View LinkedIn</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div>
-        <div class="footer-brand">Emi Nakamine</div>
-        <p class="footer-copy">© 2026 · Senior Product Designer · Tokyo</p>
-      </div>
-      <ul class="footer-links">
-        <li><a href="#work">Work</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-      <div class="footer-social">
-        <a href="https://linkedin.com/in/ericaeminakamine" class="social-link" target="_blank">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
-        </a>
-        <a href="https://dribbble.com/eminakamine" class="social-link" target="_blank">
-          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
-        </a>
-      </div>
-    </div>
-  </footer>
 
   <script>
     const obs = new IntersectionObserver(
@@ -1049,6 +1062,25 @@
       { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
     );
     document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+    // Hamburger menu
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('navMobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+    });
+    // Close menu when a link is tapped
+    mobileMenu.querySelectorAll('.nav-mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+        mobileMenu.setAttribute('aria-hidden', true);
+      });
+    });
   </script>
 
 </body>
